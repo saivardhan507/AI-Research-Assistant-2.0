@@ -1,4 +1,5 @@
 streamlit
+streamlit-audiorec
 requests
 python-docx
 pytesseract
@@ -10,6 +11,8 @@ beautifulsoup4
 selenium
 langchain
 langchain-community
+langchain-core
+langchain-classic
 langchain-text-splitters
 langchain-google-genai
 faiss-cpu
