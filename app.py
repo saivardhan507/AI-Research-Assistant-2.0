@@ -18,8 +18,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_classic.chains.question_answering import load_qa_chain
-from langchain_core.prompts import PromptTemplate
+from langchain.chains.question_answering import load_qa_chain
+from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
 import speech_recognition as sr
 from gtts import gTTS
@@ -72,6 +72,8 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 [data-testid="stSidebar"] * { color: #c9d1d9 !important; }
 #MainMenu, footer, header { visibility: hidden; }
+
+/* Top Bar */
 .top-bar {
     background: linear-gradient(90deg, #1a3a5c, #0d47a1, #1565c0);
     padding: 18px 32px 14px;
@@ -83,8 +85,12 @@ html, body, [data-testid="stAppViewContainer"] {
 }
 .top-bar h1 { font-size:1.7rem; font-weight:700; color:#ffffff !important; margin:0; letter-spacing:-0.3px; }
 .top-bar p  { font-size:0.85rem; color:#90caf9 !important; margin:2px 0 0; }
+
+/* Badges */
 .badge-on  { background:#0d3321; color:#3fb950; border:1px solid #238636; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600; display:inline-block; }
 .badge-off { background:#1c1c1c; color:#8b949e; border:1px solid #30363d; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600; display:inline-block; }
+
+/* Headings & Cards */
 .sb-heading { font-size:11px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:#58a6ff !important; margin:18px 0 10px; padding-bottom:6px; border-bottom:1px solid #21262d; }
 .chat-card { background:#161b22; border:1px solid #21262d; border-radius:12px; padding:0; margin-bottom:12px; overflow:hidden; }
 .chat-q { background:#1c2333; padding:14px 18px; font-size:14px; color:#79c0ff; font-weight:500; border-bottom:1px solid #21262d; }
@@ -97,14 +103,46 @@ html, body, [data-testid="stAppViewContainer"] {
 .hero p  { font-size:0.9rem; color:#6e7681 !important; }
 .hero-pill { display:inline-block; background:#1c2333; border:1px solid #30363d; border-radius:20px; padding:6px 14px; font-size:12px; color:#8b949e !important; margin:4px; }
 .input-card { background:#161b22; border:1px solid #21262d; border-radius:14px; padding:20px 24px; margin-bottom:20px; }
-.stTextInput > div > div > input { background:#0d1117 !important; border:1px solid #30363d !important; border-radius:8px !important; color:#e6edf3 !important; padding:10px 14px !important; font-size:14px !important; }
-.stTextInput > div > div > input:focus { border-color:#58a6ff !important; box-shadow:0 0 0 2px rgba(88,166,255,0.15) !important; }
+
+/* --- FIXED INPUT BOX VISIBILITY --- */
+[data-testid="stTextInput"] input {
+    background-color: #0d1117 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 8px !important;
+    color: #e6edf3 !important; /* White text when typing */
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+}
+[data-testid="stTextInput"] input:focus {
+    border-color: #58a6ff !important;
+    box-shadow: 0 0 0 2px rgba(88,166,255,0.15) !important;
+}
+[data-testid="stTextInput"] input::placeholder {
+    color: #8b949e !important; /* Visible light grey for placeholder */
+    opacity: 1 !important;
+}
+
+/* Selectbox */
 .stSelectbox > div > div { background:#0d1117 !important; border:1px solid #30363d !important; border-radius:8px !important; color:#e6edf3 !important; }
-.stFileUploader > div { background:#0d1117 !important; border:1px dashed #30363d !important; border-radius:10px !important; }
+
+/* --- FIXED UPLOAD SECTION --- */
+[data-testid="stFileUploadDropzone"] {
+    background-color: #0d1117 !important;
+    border: 1px dashed #30363d !important;
+    border-radius: 10px !important;
+}
+[data-testid="stFileUploadDropzone"] * {
+    color: #8b949e !important; /* Fix the dark text inside the box */
+}
+[data-testid="stFileUploadDropzone"]:hover {
+    background-color: #161b22 !important;
+    border-color: #58a6ff !important;
+}
+
+/* Buttons & Misc */
 .stButton > button { background:linear-gradient(135deg,#1565c0,#0d47a1) !important; color:#ffffff !important; border:none !important; border-radius:8px !important; padding:10px 22px !important; font-size:14px !important; font-weight:600 !important; width:100%; transition:opacity 0.2s; }
 .stButton > button:hover { opacity:0.88 !important; }
-.stRadio label { color:#c9d1d9 !important; font-size:14px !important; }
-.stCheckbox label { color:#c9d1d9 !important; font-size:14px !important; }
+.stRadio label, .stCheckbox label { color:#c9d1d9 !important; font-size:14px !important; }
 .stNumberInput > div > div > input { background:#0d1117 !important; border:1px solid #30363d !important; border-radius:8px !important; color:#e6edf3 !important; }
 div[data-testid="stMarkdownContainer"] p { color:#c9d1d9; }
 .stSuccess { background:#0d3321 !important; border:1px solid #238636 !important; border-radius:8px !important; color:#3fb950 !important; }
