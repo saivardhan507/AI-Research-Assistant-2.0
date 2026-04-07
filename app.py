@@ -71,8 +71,11 @@ html, body, [data-testid="stAppViewContainer"] {
     border-right: 1px solid #21262d;
 }
 [data-testid="stSidebar"] * { color: #c9d1d9 !important; }
-#MainMenu, footer, header { visibility: hidden; }
+/* Removed 'header' so the sidebar button comes back */
+#MainMenu, footer { visibility: hidden; }
 
+/* Make the header transparent so it doesn't mess up your dark theme */
+[data-testid="stHeader"] { background-color: transparent !important; }
 /* Top Bar */
 .top-bar {
     background: linear-gradient(90deg, #1a3a5c, #0d47a1, #1565c0);
